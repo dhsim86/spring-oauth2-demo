@@ -4,6 +4,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.time.Duration;
 import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import org.springframework.security.oauth2.server.authorization.client.InMemoryR
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
+import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.nimbusds.jose.jwk.JWKSet;
@@ -52,7 +54,18 @@ public class AuthorizationServerConfig {
 			.scope("articles.read")
 			.build();
 
-		return new InMemoryRegisteredClientRepository(registeredClient);
+		RegisteredClient registeredClient1 = RegisteredClient.withId(UUID.randomUUID().toString())
+			.clientId("dongho-client2")
+			.clientSecret("{noop}12345")
+			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
+			.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+			.tokenSettings(TokenSettings.builder()
+				.accessTokenTimeToLive(Duration.ofHours(3))
+				.build())
+			.scope("articles.read")
+			.build();
+
+		return new InMemoryRegisteredClientRepository(registeredClient, registeredClient1);
 	}
 
 	@Bean

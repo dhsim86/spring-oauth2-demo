@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 public class SecurityConfiguration {
-
+/*
 	@Bean
 	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests(authorizeRequests ->
@@ -21,7 +21,7 @@ public class SecurityConfiguration {
 			.formLogin(Customizer.withDefaults());
 		return http.build();
 	}
-
+*/
 	@Bean
 	public UserDetailsService users() {
 		UserDetails user = User.withDefaultPasswordEncoder()

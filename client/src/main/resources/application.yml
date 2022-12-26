@@ -13,22 +13,30 @@ spring:
     oauth2:
       client:
         registration:
-          articles-client-oidc:
+          dongho-client-oidc:
             provider: spring
-            client-id: dongho-client
+            client-id: dongho-client-authorization-code
             client-secret: 1234
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
             scope: openid
-            client-name: articles-client-oidc
-          articles-client-authorization-code:
+            client-name: dongho-client-client-oidc
+          dongho-client-authorization-code:
             provider: spring
-            client-id: dongho-client
+            client-id: dongho-client-authorization-code
             client-secret: 1234
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/authorized"
             scope: articles.read
-            client-name: articles-client-authorization-code
+            client-name: dongho-client-authorization-code
+          dongho-client-client-credential:
+            provider: spring
+            client-id: dongho-client-client-credential
+            client-secret: 12345
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/client_credential_authorized"
+            scope: articles.read
+            client-name: dongho-client-client-credential
         provider:
           spring:
             issuer-uri: http://auth-server:8081

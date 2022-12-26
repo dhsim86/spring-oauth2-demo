@@ -43,25 +43,26 @@ public class AuthorizationServerConfig {
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
 		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-			.clientId("dongho-client")
+			.clientId("dongho-client-authorization-code")
 			.clientSecret("{noop}1234")
 			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 			.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 			.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-			.redirectUri("http://127.0.0.1:8080/login/oauth2/code/articles-client-oidc")
+			.redirectUri("http://127.0.0.1:8080/login/oauth2/code/dongho-client-oidc")
 			.redirectUri("http://127.0.0.1:8080/authorized")
 			.scope(OidcScopes.OPENID)
 			.scope("articles.read")
 			.build();
 
 		RegisteredClient registeredClient1 = RegisteredClient.withId(UUID.randomUUID().toString())
-			.clientId("dongho-client2")
+			.clientId("dongho-client-client-credential")
 			.clientSecret("{noop}12345")
 			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
 			.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
 			.tokenSettings(TokenSettings.builder()
 				.accessTokenTimeToLive(Duration.ofHours(3))
 				.build())
+			.redirectUri("http://127.0.0.1:8080/client_credential_authorized")
 			.scope("articles.read")
 			.build();
 

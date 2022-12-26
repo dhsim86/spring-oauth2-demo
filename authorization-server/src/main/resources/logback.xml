@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <springProperty scope="context" name="ACTIVE_PROFILE" source="spring.profiles.active" />
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} | %-5level | %-35logger{0}.%-50method:%-4L | [%thread] %msg%n%rEx{full, org, sun, javax, mysql}</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="default, test">
+        <logger name="org.springframework" level="debug" />
+        <logger name="com.dongho" level="debug" />
+
+        <logger name="org.hibernate.type.descriptor.sql" level="trace" />
+
+        <root level="info">
+            <appender-ref ref="stdout" />
+        </root>
+    </springProfile>
+
+</configuration>

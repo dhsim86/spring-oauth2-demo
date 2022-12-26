@@ -16,7 +16,7 @@ public class SecurityConfiguration {
 				authorizeRequests.anyRequest().authenticated()
 			)
 			.oauth2Login(oauth2Login ->
-				oauth2Login.loginPage("/oauth2/authorization/articles-client-oidc"))
+				oauth2Login.loginPage("/oauth2/authorization/dongho-client-oidc"))
 			.oauth2Client(Customizer.withDefaults());
 		return http.build();
 	}

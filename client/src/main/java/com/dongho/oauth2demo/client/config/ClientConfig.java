@@ -30,9 +30,11 @@ public class ClientConfig {
 
 		OAuth2AuthorizedClientProvider authorizedClientProvider =
 			OAuth2AuthorizedClientProviderBuilder.builder()
-				.authorizationCode()
-				.refreshToken()
+				//.authorizationCode()
+				//.refreshToken()
+				.clientCredentials()
 				.build();
+
 		DefaultOAuth2AuthorizedClientManager authorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
 			clientRegistrationRepository, authorizedClientRepository);
 		authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);

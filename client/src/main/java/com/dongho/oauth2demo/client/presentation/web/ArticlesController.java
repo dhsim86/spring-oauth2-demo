@@ -18,7 +18,8 @@ public class ArticlesController {
 
 	@GetMapping(value = "/articles")
 	public String[] getArticles(
-		@RegisteredOAuth2AuthorizedClient("dongho-client-authorization-code") OAuth2AuthorizedClient authorizedClient
+		//@RegisteredOAuth2AuthorizedClient("dongho-client-authorization-code") OAuth2AuthorizedClient authorizedClient
+		@RegisteredOAuth2AuthorizedClient("dongho-client-client-credential") OAuth2AuthorizedClient authorizedClient
 	) {
 		return this.webClient
 			.get()

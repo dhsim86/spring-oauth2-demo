@@ -11,13 +11,13 @@ public class SecurityConfiguration {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
+		/*http
 			.authorizeRequests(authorizeRequests ->
 				authorizeRequests.anyRequest().authenticated()
 			)
 			.oauth2Login(oauth2Login ->
 				oauth2Login.loginPage("/oauth2/authorization/dongho-client-oidc"))
-			.oauth2Client(Customizer.withDefaults());
+			.oauth2Client(Customizer.withDefaults());*/
 		return http.build();
 	}
 

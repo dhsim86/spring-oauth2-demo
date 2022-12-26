@@ -33,10 +33,11 @@ spring:
             provider: spring
             client-id: dongho-client-client-credential
             client-secret: 12345
-            authorization-grant-type: authorization_code
+            authorization-grant-type: client_credentials
             redirect-uri: "http://127.0.0.1:8080/client_credential_authorized"
             scope: articles.read
             client-name: dongho-client-client-credential
+            clientAuthenticationMethod: POST
         provider:
           spring:
             issuer-uri: http://auth-server:8081

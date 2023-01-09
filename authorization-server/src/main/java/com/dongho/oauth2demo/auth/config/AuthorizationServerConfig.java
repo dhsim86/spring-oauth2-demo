@@ -5,6 +5,7 @@ import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.time.Duration;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.config.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
 import org.springframework.security.web.SecurityFilterChain;
@@ -42,31 +44,25 @@ public class AuthorizationServerConfig {
 
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-			.clientId("dongho-client-authorization-code")
-			.clientSecret("{noop}1234")
-			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+		RegisteredClient registeredClient = RegisteredClient.withId("client-id")
+			.clientId("client_id")
+			.clientSecret("{noop}test-client-secret")
+			.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
 			.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 			.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-			.redirectUri("http://127.0.0.1:8080/login/oauth2/code/dongho-client-oidc")
-			.redirectUri("http://127.0.0.1:8080/authorized")
-			.scope(OidcScopes.OPENID)
-			.scope("articles.read")
-			.build();
-
-		RegisteredClient registeredClient1 = RegisteredClient.withId(UUID.randomUUID().toString())
-			.clientId("dongho-client-client-credential")
-			.clientSecret("{noop}12345")
+			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
-			.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+			.redirectUri("http://127.0.0.1:8080/login/oauth2/code/client-oidc")
+			.redirectUri("http://127.0.0.1:8080/authorized")
 			.tokenSettings(TokenSettings.builder()
 				.accessTokenTimeToLive(Duration.ofHours(3))
+				.refreshTokenTimeToLive(Duration.ofHours(24))
 				.build())
-			.redirectUri("http://127.0.0.1:8080/client_credential_authorized")
-			.scope("articles.read")
+			.scope("news.donga")
+			.scope(OidcScopes.OPENID)
 			.build();
 
-		return new InMemoryRegisteredClientRepository(registeredClient, registeredClient1);
+		return new InMemoryRegisteredClientRepository(registeredClient);
 	}
 
 	@Bean

@@ -15,27 +15,27 @@ spring:
         registration:
           client-oidc:
             provider: spring
-            client-id: client_id
-            client-secret: test-client-secret
+            client-id: client-id-value
+            client-secret: client-secret-value
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
             scope: openid
-            client-name: client_id
+            client-name: client-id-value
           dongho-client-authorization-code:
             provider: spring
-            client-id: client_id
-            client-secret: test-client-secret
+            client-id: client-id-value
+            client-secret: client-secret-value
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/authorized"
             scope: news.donga
-            client-name: client_id
+            client-name: client-id-value
           dongho-client-client-credential:
             provider: spring
-            client-id: client_id
-            client-secret: test-client-secret
+            client-id: client-id-value
+            client-secret: client-secret-value
             authorization-grant-type: client_credentials
             scope: news.donga
-            client-name: client_id
+            client-name: client-id-value
             clientAuthenticationMethod: POST
         provider:
           spring:

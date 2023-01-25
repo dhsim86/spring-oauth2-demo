@@ -13,7 +13,7 @@ public class ResourceServerConfig {
 		http.mvcMatcher("/articles/**")
 			.authorizeRequests()
 			.mvcMatchers("/articles/**")
-			.access("hasAuthority('SCOPE_news.donga')")
+			.access("hasAuthority('SCOPE_test')")
 			.and()
 			.oauth2ResourceServer()
 			.jwt();

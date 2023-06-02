@@ -15,27 +15,27 @@ spring:
         registration:
           client-oidc:
             provider: spring
-            client-id: client-id-value
-            client-secret: client-secret-value
+            client-id: client-id
+            client-secret: client-secret
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
             scope: openid
-            client-name: client-id-value
+            client-name: client-name
           dongho-client-authorization-code:
             provider: spring
-            client-id: client-id-value
-            client-secret: client-secret-value
+            client-id: client-id
+            client-secret: client-secret
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/authorized"
-            scope: test
-            client-name: client-id-value
+            scope: test-scope
+            client-name: client-name
           dongho-client-client-credential:
             provider: spring
-            client-id: client-id-value
-            client-secret: client-secret-value
+            client-id: client-id
+            client-secret: client-secret
             authorization-grant-type: client_credentials
-            scope: test
-            client-name: client-id-value
+            scope: test-scope
+            client-name: client-name
             clientAuthenticationMethod: POST
         provider:
           spring:

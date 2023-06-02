@@ -11,13 +11,14 @@ public class SecurityConfiguration {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests(authorizeRequests ->
-				authorizeRequests.anyRequest().authenticated()
-			)
+		// TODO: authorization code grants
+		/*http
 			.oauth2Login(oauth2Login ->
 				oauth2Login.loginPage("/oauth2/authorization/client-oidc"))
-			.oauth2Client(Customizer.withDefaults());
+			.oauth2Client(Customizer.withDefaults());*/
+
+		// TODO: client credentials
+		http.oauth2Client(Customizer.withDefaults());
 		return http.build();
 	}
 

@@ -10,17 +10,17 @@
 
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} | %-5level | %-35logger{0}.%-50method:%-4L | [%thread] %msg%n%rEx{full, org, sun, javax, mysql}</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5level) [%blue(%thread)] %clr(%-40.40logger{39}){cyan}.%clr(%method){yellow} #L%clr(%line){magenta} %clr(:){faint} %msg%n%wEx</pattern>
         </encoder>
     </appender>
 
     <springProfile name="default, test">
-        <logger name="org.springframework" level="trace" />
-        <logger name="com.dongho" level="debug" />
+        <logger name="org.springframework" level="TRACE" />
+        <logger name="com.dongho" level="DEBUG" />
 
-        <logger name="org.hibernate.type.descriptor.sql" level="trace" />
+        <logger name="org.hibernate.type.descriptor.sql" level="TRACE" />
 
-        <root level="info">
+        <root level="INFO">
             <appender-ref ref="stdout" />
         </root>
     </springProfile>

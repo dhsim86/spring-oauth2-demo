@@ -30,8 +30,8 @@ public class ClientConfig {
 
 		OAuth2AuthorizedClientProvider authorizedClientProvider =
 			OAuth2AuthorizedClientProviderBuilder.builder()
-				//.authorizationCode()	// TODO: authorization code grants
-				//.refreshToken()
+				.authorizationCode()	// TODO: authorization code grants
+				.refreshToken()
 				.clientCredentials()	// TODO: client credentials
 				.build();
 

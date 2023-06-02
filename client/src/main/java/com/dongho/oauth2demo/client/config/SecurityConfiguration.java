@@ -13,12 +13,18 @@ public class SecurityConfiguration {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		// TODO: authorization code grants
 		/*http
+			.authorizeRequests(authorizeRequests ->
+				authorizeRequests.anyRequest().authenticated()
+			)
 			.oauth2Login(oauth2Login ->
 				oauth2Login.loginPage("/oauth2/authorization/client-oidc"))
 			.oauth2Client(Customizer.withDefaults());*/
 
 		// TODO: client credentials
-		http.oauth2Client(Customizer.withDefaults());
+		http
+			.authorizeRequests().anyRequest().permitAll()
+				.and()
+			.oauth2Client(Customizer.withDefaults());
 		return http.build();
 	}
 

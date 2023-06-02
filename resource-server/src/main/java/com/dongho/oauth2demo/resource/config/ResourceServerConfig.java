@@ -11,12 +11,12 @@ public class ResourceServerConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.mvcMatcher("/articles/**")
-			.authorizeRequests()
+				.authorizeRequests()
 			.mvcMatchers("/articles/**")
-			.access("hasAuthority('SCOPE_test-scope')")
+				.access("hasAuthority('SCOPE_test-scope')")
 			.and()
-			.oauth2ResourceServer()
-			.jwt();
+				.oauth2ResourceServer()
+				.jwt();
 		return http.build();
 	}
 }
